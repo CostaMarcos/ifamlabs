@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 const teste = require('./app/controllers/testcontroller');
 
-routes.get('/', teste.index);
+routes.post('/create/room', teste.index);
 
 module.exports = routes;
