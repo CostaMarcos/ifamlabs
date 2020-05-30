@@ -5,10 +5,6 @@ exports.up = function(knex) {
         table.string('campus').notNullable();
         table.boolean('tipo').notNullable();
         table.string('password_hash').notNullable();
-
-        table.string('pedido_id');
-
-        table.foreign('pedido_id').references('_id').inTable('pedidos');
     });
 };
 
