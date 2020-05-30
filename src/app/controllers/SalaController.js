@@ -17,7 +17,7 @@ module.exports = {
             interditada,
         })
 
-        return res.send({ id });
+        return res.status(200).send({ id });
     },
 
     async index(req, res){

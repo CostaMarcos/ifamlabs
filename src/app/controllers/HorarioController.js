@@ -52,16 +52,17 @@ module.exports = {
     },
 
     async create(req, res){
-        const { inicio, fim, ocupado } = req.body;
-        const sala_id = req.headers.room;
+        const { inicio, fim, ocupado, codigo, sala_id } = req.body;
+        //const sala_id = req.headers.room;
         
         const [id] = await connection('horarios').insert({
             inicio,
             fim,
             ocupado,
+            codigo,
             sala_id
         });
 
-        return res.send({ id });
+        return res.status(200).send({ id });
     }
 }
