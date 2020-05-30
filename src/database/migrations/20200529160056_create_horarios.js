@@ -5,7 +5,8 @@ exports.up = function(knex) {
         table.string('inicio').notNullable();
         table.string('fim').notNullable();
         table.boolean('ocupado');
-
+        table.string('codigo').notNullable();
+        
         table.string('sala_id').notNullable();
 
         table.foreign('sala_id').references('id').inTable('salas');
