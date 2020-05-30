@@ -14,7 +14,7 @@ describe('Create a new user', () => {
             nome: "newUserTest",
             campus: "cmzl",
             tipo: true,
-            password_hash: "123"
+            password: "123"
         });
       expect(response.status).toBe(200);
   });
