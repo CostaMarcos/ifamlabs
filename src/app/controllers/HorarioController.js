@@ -1,4 +1,5 @@
 const connection = require('../../database/connection');
+const crypto = require('crypto');
 
 module.exports = {
     async index(req, res){
@@ -52,8 +53,9 @@ module.exports = {
     },
 
     async create(req, res){
-        const { inicio, fim, ocupado, codigo, sala_id } = req.body;
-        //const sala_id = req.headers.room;
+        const { inicio, fim, ocupado } = req.body;
+        const sala_id = req.headers.room;
+        const codigo = crypto.randomBytes(3).toString('HEX');
         
         const [id] = await connection('horarios').insert({
             inicio,

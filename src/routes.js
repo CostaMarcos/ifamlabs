@@ -13,11 +13,14 @@ routes.get('/time/show', horario.show);
 
 routes.post('/user/create', usuario.create);
 routes.post('/user/login', usuario.store);
-//routes.use(authMiddlewares);
 
 routes.post('/time/create', horario.create);
 routes.delete('/time/delete/:id', horario.delete);
 
+routes.use(authMiddlewares);
+
 routes.post('/request/create', pedido.create);
-routes.post('/request/aprove', pedido.store);
+routes.patch('/request/aprove', pedido.store);
+routes.get('/request/list', pedido.index);
+
 module.exports = routes;
