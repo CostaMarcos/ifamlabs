@@ -21,31 +21,33 @@ module.exports = {
     },
 
     async index(req, res){
-        const { page = 1 } = req.query;
-        const { campus } = req.query;
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        const { page = 1 } = req.body;
+        const campus = req.body.campus;
 
-        if(campus){
-            const [count] = await connection('salas').where('campus', campus).count();
+        console.log(campus);
+        if(req.body.campus !== null){
+            //const [count] = await connection('salas').where('campus', 'cmdi').count();
 
             const data = await connection('salas')
-            .where('campus', campus)
-            .limit(5)
-            .offset((page-1) * 5)
-            .select('*');
+                .where('campus', 'cmdi')
+                .limit(5)
+                .offset((page-1) * 5)
+                .select('*');
 
-            res.header('X-Total-Count', count['count(*)']);
-            return res.send(data);
+            //res.header('X-Total-Count', count['count(*)']);
+            return res.json(data);
 
         }
 
-        const [count] = await connection('salas').count();
+        //const [count] = await connection('salas').count();
 
         const data = await connection('salas')
             .limit(5)
             .offset((page-1) * 5)
             .select('*');
-        
-        res.header('X-Total-Count', count['count(*)']);
-        return res.send(data);
+
+        //res.header('X-Total-Count', count['count(*)']);
+        return res.json(data);
     }
 }

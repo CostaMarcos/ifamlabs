@@ -5,7 +5,7 @@ const usuario = require('./app/controllers/UserController');
 const pedido = require('./app/controllers/PedidosController');
 const authMiddlewares = require("./app/middlewares/auth");
 
-routes.get('/room/list', sala.index);
+routes.post('/room/list', sala.index);
 routes.post('/room/create', sala.store);
 
 routes.get('/time/list', horario.index);
