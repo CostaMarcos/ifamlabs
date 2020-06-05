@@ -22,32 +22,28 @@ module.exports = {
 
     async index(req, res){
         res.setHeader('Access-Control-Allow-Origin', '*');
-        const { page = 1 } = req.body;
-        const campus = req.body.campus;
+        const { page = 1 } = req.query.page;
+        const campus = req.query.campus;
 
-        console.log(campus);
-        if(req.body.campus !== null){
-            //const [count] = await connection('salas').where('campus', 'cmdi').count();
-
+        
+        if(campus !== null){
             const data = await connection('salas')
-                .where('campus', 'cmdi')
+                .where('campus', campus)
                 .limit(5)
                 .offset((page-1) * 5)
                 .select('*');
 
-            //res.header('X-Total-Count', count['count(*)']);
-            return res.json(data);
-
+            return res.json(data).end();
         }
 
         //const [count] = await connection('salas').count();
-
+        
         const data = await connection('salas')
             .limit(5)
             .offset((page-1) * 5)
             .select('*');
 
         //res.header('X-Total-Count', count['count(*)']);
-        return res.json(data);
+        return res.send(data).end();
     }
 }
